@@ -10,7 +10,7 @@ jobs:
     steps:
     - checkout
     - run: "go version"
-    - run: "go build"
+    - run: "g++ --version"
 
 workflows:
   main:
