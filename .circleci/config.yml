@@ -4,15 +4,20 @@ orbs:
   win: circleci/windows@5.0.0
 
 jobs:
-  test:
+  build:
     executor:
       name: win/default
     steps:
     - checkout
     - run: "go version"
-    - run: "g++ --version"
+    - run:
+         command: echo hello && echo $PATH
+         shell: bash.exe
+    - run:
+         command: g++ --version
+         shell: bash.exe
 
 workflows:
   main:
     jobs:
-    - test
+    - build
