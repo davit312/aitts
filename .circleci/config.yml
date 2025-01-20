@@ -3,7 +3,7 @@ version: 2.1
 jobs:
     say-hello:
         docker:
-            image: cimg/base:stable
+            - image: cimg/base:stable
         steps:
             - run: 
                 name: "Greating to strange items"
@@ -12,7 +12,7 @@ jobs:
                     echo brbrbr
     say-hi:
         docker:
-            image: cimg/base:stable
+            - image: cimg/base:stable
         steps:
             - checkout
             - run: 
