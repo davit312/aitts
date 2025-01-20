@@ -1,25 +1,13 @@
 version: 2.1
 
+orbs:
+  windows: circleci/windows@5.0.0
+
 jobs:
-  say-hello:
-    docker:
-        - image: cimg/base:stable
-    steps:
-    - run: 
-          name: "Greating to strange items"
-          command: |
-              echo hello
-              echo brbrbr
-  say-hi:
-    docker:
-        - image: cimg/base:stable
-    steps:
-    - checkout
-    - run: 
-        command: "echo 1500"
+  test:
+    run: "go version"
 
 workflows:
-  main-function:
+  main:
     jobs:
-    - say-hi
-    - say-hello
+    - test
