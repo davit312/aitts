@@ -8,7 +8,9 @@ jobs:
     executor:
       name: win/default
     steps:
+    - checkout
     - run: "go version"
+    - run: "go build"
 
 workflows:
   main:
