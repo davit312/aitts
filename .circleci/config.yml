@@ -1,14 +1,14 @@
 version: 2.1
 
 orbs:
-  windows: circleci/windows@5.0.0
+  win: circleci/windows@5.0.0
 
 jobs:
   test:
     executor:
       name: win/default
     steps:
-    run: "go version"
+    - run: "go version"
 
 workflows:
   main:
