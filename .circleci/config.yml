@@ -5,6 +5,9 @@ orbs:
 
 jobs:
   test:
+    executor:
+      name: win/default
+    steps:
     run: "go version"
 
 workflows:
