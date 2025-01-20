@@ -8,8 +8,8 @@ jobs:
             - run: 
                 name: "Greating to strange items"
                 command: |
-        echo hello
-        echo brbrbr
+                    echo hello
+                    echo brbrbr
     say-hi:
         docker:
             image: cimg/base:stable
