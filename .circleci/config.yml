@@ -20,7 +20,7 @@ jobs:
     - run:
         command: go build; dir
     - store_artifacts:
-          path: "./*.exe"
+          path: ./*.exe
 
 workflows:
   main:
