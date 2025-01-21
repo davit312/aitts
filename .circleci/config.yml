@@ -14,7 +14,10 @@ jobs:
           - migw-key
     - run:
         name: Install MinGW
-        command: choco install -y mingw
+        command: |
+          if (-not (Test-Path "C:\ProgramData\mingw64")) {
+            choco install -y mingw
+          }  
     - save_cache:
         paths:
           - C:\ProgramData\mingw64
