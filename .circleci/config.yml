@@ -9,9 +9,16 @@ jobs:
       name: win/default
     steps:
     - checkout
+    - restore_cache:
+      keys:
+        - migw-key
     - run:
         name: Install MinGW
         command: choco install -y mingw
+    - save_cache:
+      paths:
+        - C:\ProgramData\mingw64
+      key: migw-key
     - run:
         name: Add MinGW to PATH
         command: |
@@ -20,7 +27,7 @@ jobs:
     - run:
         command: go build; dir
     - store_artifacts:
-          path: ./*.exe
+          path: ./aitts.exe
 
 workflows:
   main:
