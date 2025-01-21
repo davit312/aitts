@@ -10,15 +10,15 @@ jobs:
     steps:
     - checkout
     - restore_cache:
-      keys:
-        - migw-key
+        keys:
+          - migw-key
     - run:
         name: Install MinGW
         command: choco install -y mingw
     - save_cache:
-      paths:
-        - C:\ProgramData\mingw64
-      key: migw-key
+        paths:
+          - C:\ProgramData\mingw64
+        key: migw-key
     - run:
         name: Add MinGW to PATH
         command: |
@@ -27,7 +27,8 @@ jobs:
     - run:
         command: go build; dir
     - store_artifacts:
-          path: ./aitts.exe
+        path: ./aitts.exe
+    - run: dir
 
 workflows:
   main:
