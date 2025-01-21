@@ -21,7 +21,7 @@ jobs:
         command: |
           refreshenv
     - run:
-        command: ls /c/tools
+        command: ls -l /c/ProgramData/mingw64/mingw64/bin
         shell: bash.exe
 
 workflows:
