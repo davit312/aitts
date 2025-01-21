@@ -8,8 +8,6 @@ jobs:
     executor:
       name: win/default
     steps:
-    - run: go env
-    - run: circleci-agent step halt
     - checkout
     - restore_cache:
         keys:
@@ -29,8 +27,15 @@ jobs:
         command: |
           $env:Path += ";C:\ProgramData\mingw64\mingw64\bin"
           [Environment]::SetEnvironmentVariable("Path", $env:Path, [System.EnvironmentVariableTarget]::Machine)
+    - restore_cache:
+        keys:
+          - go-pkg-{{ checksum "go.mod" }}
     - run:
         command: go build -ldflags '-H=windowsgui'
+    - save_cache:
+        key: go-pkg-{{ checksum "go.mod" }}
+        paths:
+          - C:\Users\circleci\go
     - store_artifacts:
         path: ./aitts.exe
 
