@@ -21,7 +21,7 @@ jobs:
           command: |
             refreshenv
     - run:
-         command: echo $PATH; g++ --version
+         command: echo $PATH; ls -lR /c/ProgramData/chocolatey/
          shell: bash.exe
 
 workflows:
