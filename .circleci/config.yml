@@ -17,12 +17,11 @@ jobs:
           name: Install MinGW
           command: choco install -y mingw
     - run:
-          name: Add MinGW to PATH
+          name: Refresh PATH
           command: |
-            $env:Path += ";C:\tools\mingw64\bin"
-            [Environment]::SetEnvironmentVariable("Path", $env:Path, [System.EnvironmentVariableTarget]::Machine)
+            refreshenv
     - run:
-         command: g++ --version
+         command: echo $PATH; g++ --version
          shell: bash.exe
 
 workflows:
