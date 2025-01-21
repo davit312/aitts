@@ -19,6 +19,8 @@ jobs:
           [Environment]::SetEnvironmentVariable("Path", $env:Path, [System.EnvironmentVariableTarget]::Machine)
     - run:
         command: go build; dir
+    - store_artifacts:
+          path: "./*.exe"
 
 workflows:
   main:
