@@ -14,6 +14,9 @@ jobs:
          command: echo hello && echo $PATH
          shell: bash.exe
     - run:
+          name: Install MinGW
+          command: choco install -y mingw
+    - run:
          command: g++ --version
          shell: bash.exe
 
