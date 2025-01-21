@@ -11,18 +11,18 @@ jobs:
     - checkout
     - run: "go version"
     - run:
-         command: echo hello && echo $PATH
-         shell: bash.exe
+        command: echo hello && echo $PATH
+        shell: bash.exe
     - run:
-          name: Install MinGW
-          command: choco install -y mingw
+        name: Install MinGW
+        command: choco install -y mingw
     - run:
-          name: Refresh PATH
-          command: |
-            refreshenv
+        name: Refresh PATH
+        command: |
+          refreshenv
     - run:
-         command: echo $PATH; ls -lR /c/ProgramData/chocolatey/
-         shell: bash.exe
+        command: ls /c/
+        shell: bash.exe
 
 workflows:
   main:
