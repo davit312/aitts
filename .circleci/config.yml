@@ -22,11 +22,11 @@ jobs:
         paths:
           - C:\ProgramData\mingw64
         key: migw-key
-    # - run:
-    #     name: Add MinGW to PATH
-    #     command: |
-    #       $env:Path += ";C:\ProgramData\mingw64\mingw64\bin"
-    #       [Environment]::SetEnvironmentVariable("Path", $env:Path, [System.EnvironmentVariableTarget]::Machine)
+    - run:
+        name: Add MinGW to PATH
+        command: |
+          $env:Path += ";C:\ProgramData\mingw64\mingw64\bin"
+          [Environment]::SetEnvironmentVariable("Path", $env:Path, [System.EnvironmentVariableTarget]::Machine)
     - restore_cache:
         keys:
           - go-pkg-{{ checksum "go.mod" }}
