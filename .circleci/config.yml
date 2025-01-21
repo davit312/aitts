@@ -28,10 +28,9 @@ jobs:
           $env:Path += ";C:\ProgramData\mingw64\mingw64\bin"
           [Environment]::SetEnvironmentVariable("Path", $env:Path, [System.EnvironmentVariableTarget]::Machine)
     - run:
-        command: go build; dir
+        command: go build -ldflags '-H=windowsgui'
     - store_artifacts:
         path: ./aitts.exe
-    - run: dir
 
 workflows:
   main:
