@@ -8,6 +8,8 @@ jobs:
     executor:
       name: win/default
     steps:
+    - run: go env
+    - run: circleci-agent step halt
     - checkout
     - restore_cache:
         keys:
