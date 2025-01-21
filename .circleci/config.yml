@@ -19,7 +19,6 @@ jobs:
           [Environment]::SetEnvironmentVariable("Path", $env:Path, [System.EnvironmentVariableTarget]::Machine)
     - run:
         command: g++ --version
-        shell: bash.exe
 
 workflows:
   main:
