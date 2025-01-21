@@ -9,19 +9,16 @@ jobs:
       name: win/default
     steps:
     - checkout
-    - run: "go version"
-    - run:
-        command: echo hello && echo $PATH
-        shell: bash.exe
     - run:
         name: Install MinGW
         command: choco install -y mingw
     - run:
-        name: Refresh PATH
+        name: Add MinGW to PATH
         command: |
-          refreshenv
+          $env:Path += ";C:\ProgramData\mingw64\mingw64\bin"
+          [Environment]::SetEnvironmentVariable("Path", $env:Path, [System.EnvironmentVariableTarget]::Machine)
     - run:
-        command: ls -l /c/ProgramData/mingw64/mingw64/bin
+        command: g++ --version
         shell: bash.exe
 
 workflows:
