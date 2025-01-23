@@ -5,16 +5,10 @@ import (
 	"net"
 	"net/http"
 	"os"
-	"context"
-	"time"
 )
 
-var main_finished, server_finished chan struct{}
-var port_chan chan int
-var tmpdir_chan chan string
-
-func start_static_fileserver() {
-	defer func(){
+func startFileserver() {
+	defer func() {
 		server_finished <- struct{}{}
 	}()
 
@@ -23,7 +17,7 @@ func start_static_fileserver() {
 	if err != nil {
 		log.Fatal("Error creating temporary directory:", err)
 	}
-	defer os.RemoveAll(tempDir) // Clean up when done
+	defer os.RemoveAll(tempDir)
 
 	// Create a listener on random port
 	listener, err := net.Listen("tcp", ":0")
@@ -33,26 +27,18 @@ func start_static_fileserver() {
 
 	// Get the actual port assigned
 	port := listener.Addr().(*net.TCPAddr).Port
-	
+
 	port_chan <- port
 	tmpdir_chan <- tempDir
 
-	// Create server and file server handler
-	fileServer := http.FileServer(http.Dir(tempDir))
-	server := &http.Server{
-		Handler: fileServer,
-	}
-
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
+	http.Handle("/audio/", http.StripPrefix("/audio/", http.FileServer(http.Dir(tempDir))))
 
 	// Start the server
 	go func() {
-		if err := server.Serve(listener); err != nil && err != http.ErrServerClosed {
+		if err := http.Serve(listener, nil); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("Server error: %v", err)
 		}
 	}()
-	defer server.Shutdown(ctx)
 
-	_ = <- main_finished
+	_ = <-main_finished
 }

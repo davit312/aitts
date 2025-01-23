@@ -1,15 +1,10 @@
 package main
 
-var startpage string = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Responsive Page with Bootstrap Elements</title>
-	
-	<style>
-		.btn {
+import "fmt"
+
+func makeStartpage(port int) string {
+	css := `
+			.btn {
 			display: inline-block;
 			font-weight: 400;
 			color: #212529;
@@ -74,14 +69,15 @@ var startpage string = `
 
 		.form-check-label {
 			margin-bottom: 0;
-			font-size: large;
 		}
 
 		body{
 			height: 100vh;
+			font-size: large;
 			margin: 0;
 			padding: 0;
 		}
+
 
 		.container {
 			display: flex;
@@ -105,12 +101,35 @@ var startpage string = `
 			align-items: center;
 			padding: 15px;
 		}
+	`
+
+	js := `
+	function getText(){
+		return document.querySelector('#text').value
+	}
+	function play(file){
+		let player = document.querySelector('#speech')
+		let address = (atob(file)).split('\\')
+		alert(address[address.length - 1])
+		player.src = "/audio/"+address[address.length - 1]
+		player.play()
+	}
+	`
+	return `<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<base href="http://localhost:` + fmt.Sprintf("%d", port) + `">
+	
+	<style>` + css + `
 	</style>
 </head>
 <body>
 	<div class="container">
 		<div class="left-part">
-			<textarea style="width: 100%; height: 100%; resize: none; padding: 10px;"></textarea>
+			<audio id='speech' hidden></audio>
+			<textarea id='text' style="width: 100%; height: 100%; resize: none; padding: 10px;"></textarea>
 			<div class="footer">
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -119,17 +138,19 @@ var startpage string = `
 					</label>
 				</div>
 				<select>
-					<option value="zzz">yyy</option>
+					<option value="aaa">yyy</option>
 					<option value="zzz">yyy</option>
 				</select>
 				<button>Settings</button>
 			</div>
 		</div>
 		<div class="right-part">
-			<button class="btn btn-primary" disabled style="margin-bottom: 10px;">Speak</button>
+			<button class="btn btn-primary" onclick="read(getText())" style="margin-bottom: 10px;">Speak</button>
 			<button class="btn btn-primary">Get Audio</button>
 		</div>
 	</div>
+	<script>` + js + `</script>
 </body>
 </html>
 `
+}
