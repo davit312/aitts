@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/webui/style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="left-part">
+			<audio id='speech' hidden></audio>
+			<textarea id='text' style="width: 100%; height: 100%; resize: none; padding: 10px;"></textarea>
+			<div class="footer">
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+					<label class="form-check-label" for="flexCheckDefault">
+						Read clipboard
+					</label>
+				</div>
+				<select>
+					<option value="aaa">yyy</option>
+					<option value="zzz">yyy</option>
+				</select>
+				<button>Settings</button>
+			</div>
+		</div>
+		<div class="right-part">
+			<button class="btn btn-primary" onclick="read(getText())" style="margin-bottom: 10px;">Speak</button>
+			<button class="btn btn-primary">Get Audio</button>
+		</div>
+	</div>
+	<script src="/webui/main.js"></script>
+</body>
+</html>

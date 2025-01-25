@@ -1,5 +1,6 @@
 package main
 
+import "fmt"
 import webview "github.com/webview/webview_go"
 
 var (
@@ -31,7 +32,8 @@ func main() {
 
 	w.SetTitle("Reader")
 	w.SetSize(800, 600, webview.HintNone)
-	w.SetHtml(makeStartpage(port))
+	w.Navigate(`http://localhost:`+fmt.Sprintf("%d", port)+`/webui/`)
+	println(`http://localhost:`+fmt.Sprintf("%d", port)+`/webui/`)
 	w.Bind("read", createAudio)
 
 	w.Run()

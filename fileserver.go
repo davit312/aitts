@@ -28,10 +28,10 @@ func startFileserver() {
 	// Get the actual port assigned
 	port := listener.Addr().(*net.TCPAddr).Port
 
-	port_chan <- port
-	tmpdir_chan <- tempDir
 
 	http.Handle("/audio/", http.StripPrefix("/audio/", http.FileServer(http.Dir(tempDir))))
+	http.Handle("/webui/", http.StripPrefix("/webui/", http.FileServer(http.Dir("./webui"))))
+
 
 	// Start the server
 	go func() {
@@ -39,6 +39,9 @@ func startFileserver() {
 			log.Fatalf("Server error: %v", err)
 		}
 	}()
+
+	port_chan <- port
+	tmpdir_chan <- tempDir
 
 	_ = <-main_finished
 }
