@@ -12,10 +12,11 @@ import (
 
 func createAudio(text string) {
 	go func() {
+		println(text)
+		println(model)
 		cmd := exec.Command(filepath.Join(baseDir(), "piper", "piper"),
-			"--model", filepath.Join(baseDir(), "models", "hy_AM-gor-medium.onnx"),
+			"--model", filepath.Join(baseDir(), "models", model),
 			"--output_dir", tmpDir)
-
 		stdin, err := cmd.StdinPipe()
 		if err != nil {
 			fmt.Println("Error creating stdin pipe:", err)

@@ -1,8 +1,10 @@
 package main
 
-import "log"
-import "os"
-import "path/filepath"
+import (
+	"log"
+	"os"
+	"path/filepath"
+)
 
 func baseDir() string {
 	exePath, err := os.Executable()
@@ -11,4 +13,8 @@ func baseDir() string {
 	}
 
 	return filepath.Dir(exePath)
+}
+
+func saveSettings(settings string) {
+
 }

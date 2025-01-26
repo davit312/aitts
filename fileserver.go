@@ -43,5 +43,5 @@ func startFileserver() {
 	port_chan <- port
 	tmpdir_chan <- tempDir
 
-	_ = <-main_finished
+	<-main_finished
 }

@@ -1,13 +1,17 @@
 package main
 
-import "fmt"
-import webview "github.com/webview/webview_go"
+import (
+	"fmt"
+
+	webview "github.com/webview/webview_go"
+)
 
 var (
 	main_finished,
 	server_finished chan struct{}
 	port        int
 	tmpDir      string
+	model       string
 	port_chan   chan int
 	tmpdir_chan chan string
 	w           webview.WebView
@@ -32,12 +36,17 @@ func main() {
 
 	w.SetTitle("Reader")
 	w.SetSize(800, 600, webview.HintNone)
-	w.Navigate(`http://localhost:`+fmt.Sprintf("%d", port)+`/webui/`)
-	println(`http://localhost:`+fmt.Sprintf("%d", port)+`/webui/`)
-	w.Bind("read", createAudio)
 
+	w.Bind("readText", createAudio)
+	w.Bind("getModels", initInstalledModels)
+	w.Bind("setModel", setModel)
+	w.Bind("saveSettings", saveSettings)
+	
+	w.Navigate(`http://localhost:` + fmt.Sprintf("%d", port) + `/webui/`)
+	println(`http://localhost:` + fmt.Sprintf("%d", port) + `/webui/`)
+	
 	w.Run()
 
 	main_finished <- struct{}{}
-	_ = <-server_finished
+	<-server_finished
 }

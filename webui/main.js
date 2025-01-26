@@ -1,7 +1,17 @@
+const LANGUAGES = {
+    "hy_AM": "Armenian",
+    "en_US": "English (US)",
+    "ru_RU": "Russian"
+}
+
+let settings = {}
+let models = []
+let currentModel = ""
 let audioQueue = []
 let nextChunkToPlay = 0
 let useCurrentQueue = false
 let player = document.querySelector('#speech')
+let modelSelector = document.querySelector('#models')
 
 player.addEventListener('ended', (e) => {
     if (nextChunkToPlay > audioQueue.length -1){
@@ -33,3 +43,6 @@ function addToQueue(chunk, start=false){
         nextChunkToPlay += 1
     }
 }
+
+/* Start program UI */
+init()
