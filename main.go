@@ -23,7 +23,7 @@ func main() {
 
 	port_chan = make(chan int)
 	tmpdir_chan = make(chan string)
-
+go clipmain()
 	go startFileserver()
 
 	port = <-port_chan
