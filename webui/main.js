@@ -12,6 +12,11 @@ let nextChunkToPlay = 0
 let useCurrentQueue = false
 let player = document.querySelector('#speech')
 let modelSelector = document.querySelector('#models')
+let readonClip = document.querySelector('#readonclipboard')
+
+readonClip.addEventListener('change', (e) => {
+    setClipTrack(e.target.checked)
+})
 
 player.addEventListener('ended', (e) => {
     if (nextChunkToPlay > audioQueue.length -1){

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	webview "github.com/webview/webview_go"
 )
@@ -12,6 +13,8 @@ var (
 	port        int
 	tmpDir      string
 	model       string
+	clipTrack   bool
+	stopClipTrack chan struct{}
 	port_chan   chan int
 	tmpdir_chan chan string
 	w           webview.WebView
@@ -23,7 +26,7 @@ func main() {
 
 	port_chan = make(chan int)
 	tmpdir_chan = make(chan string)
-go clipmain()
+
 	go startFileserver()
 
 	port = <-port_chan
@@ -38,13 +41,17 @@ go clipmain()
 	w.SetSize(800, 600, webview.HintNone)
 
 	w.Bind("readText", createAudio)
+
 	w.Bind("getModels", initInstalledModels)
 	w.Bind("setModel", setModel)
+
+	w.Bind("setClipTrack", setClipTrack)
+
 	w.Bind("saveSettings", saveSettings)
-	
+
 	w.Navigate(`http://localhost:` + fmt.Sprintf("%d", port) + `/webui/`)
-	println(`http://localhost:` + fmt.Sprintf("%d", port) + `/webui/`)
-	
+	log.Println(`http://localhost:` + fmt.Sprintf("%d", port) + `/webui/`)
+
 	w.Run()
 
 	main_finished <- struct{}{}

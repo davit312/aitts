@@ -39,7 +39,7 @@ func initInstalledModels() string {
 
 	w.Dispatch(func() {
 		w.Eval(`models = "` + result + `";
-				initModels()`)
+				initSettings()`)
 	})
 
 	return result

@@ -31,7 +31,7 @@
     background-color: #0069d9;
     border-color: #0062cc;
 }
-.footer{
+.topbar{
     display: flex;
     justify-content: space-between;
 }

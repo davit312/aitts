@@ -1,10 +1,13 @@
-function initModels(){
+function initSettings(){
     fetch('/webui/settings.json').then(resp => {
         resp.json().then(jr => {
             settings = jr
 
             // Run callbacks after settings loaded
             initModelSelector()
+            if(settings.read_clipboard){
+                readonClip.click()
+            }
         })
     })
 }
