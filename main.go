@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 
 	webview "github.com/webview/webview_go"
 )
@@ -10,14 +11,14 @@ import (
 var (
 	main_finished,
 	server_finished chan struct{}
-	port        int
-	tmpDir      string
-	model       string
-	clipTrack   bool
+	port          int
+	tmpDir        string
+	model         string
+	clipTrack     bool
 	stopClipTrack chan struct{}
-	port_chan   chan int
-	tmpdir_chan chan string
-	w           webview.WebView
+	port_chan     chan int
+	tmpdir_chan   chan string
+	w             webview.WebView
 )
 
 func main() {
@@ -26,6 +27,11 @@ func main() {
 
 	port_chan = make(chan int)
 	tmpdir_chan = make(chan string)
+
+	err := os.Chdir(baseDir())
+	if err != nil {
+		panic(err)
+	}
 
 	go startFileserver()
 

@@ -5,6 +5,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"path/filepath"
 )
 
 func startFileserver() {
@@ -28,10 +29,8 @@ func startFileserver() {
 	// Get the actual port assigned
 	port := listener.Addr().(*net.TCPAddr).Port
 
-
 	http.Handle("/audio/", http.StripPrefix("/audio/", http.FileServer(http.Dir(tempDir))))
-	http.Handle("/webui/", http.StripPrefix("/webui/", http.FileServer(http.Dir("./webui"))))
-
+	http.Handle("/webui/", http.StripPrefix("/webui/", http.FileServer(http.Dir(filepath.Join(baseDir(), "./webui")))))
 
 	// Start the server
 	go func() {

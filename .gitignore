@@ -1,4 +1,6 @@
 aitts
 aitts.exe
 piper/
-models/
+models/*
+!models/*.md
+
