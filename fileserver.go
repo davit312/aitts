@@ -30,7 +30,7 @@ func startFileserver() {
 	port := listener.Addr().(*net.TCPAddr).Port
 
 	http.Handle("/audio/", http.StripPrefix("/audio/", http.FileServer(http.Dir(tempDir))))
-	http.Handle("/webui/", http.StripPrefix("/webui/", http.FileServer(http.Dir(filepath.Join(baseDir(), "./webui")))))
+	http.Handle("/webui/", http.StripPrefix("/webui/", http.FileServer(http.Dir(filepath.Join(baseDir(), "webui")))))
 
 	// Start the server
 	go func() {

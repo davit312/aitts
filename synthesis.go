@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -12,14 +13,19 @@ import (
 
 func createAudio(text string) {
 	go func() {
-		println(text)
-		println(model)
+
+		text = fixChunkSplit(text)
+
+		log.Println(text)
+		log.Println(model)
+
+
 		cmd := exec.Command(filepath.Join(baseDir(), "piper", "piper"),
 			"--model", filepath.Join(baseDir(), "models", model),
 			"--output_dir", tmpDir)
 		stdin, err := cmd.StdinPipe()
 		if err != nil {
-			fmt.Println("Error creating stdin pipe:", err)
+			log.Println("Error creating stdin pipe:", err)
 			return
 		}
 
@@ -60,12 +66,11 @@ func createAudio(text string) {
 			w.Dispatch(func() {
 				w.Eval(script)
 			})
-			println("---", script)
 		}
 
 		// Wait for the command to finish
 		if err := cmd.Wait(); err != nil {
-			fmt.Println("Error waiting for command:", err)
+			log.Println("Error waiting for command:", err)
 		}
 
 		w.Dispatch(func() {

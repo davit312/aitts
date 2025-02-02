@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
+	"strings"
 
 	"golang.design/x/clipboard"
 )
@@ -30,7 +30,14 @@ func clipmain() {
 
 		select {
 		case msg := <-changed:
-			fmt.Println(string(msg))
+			w.Dispatch(func() {
+				message := strings.ReplaceAll(string(msg), "`", "#BACKTIK#")
+				script := "textbox.value = `" + message + "`" + `
+				readText(getText())	
+				`
+
+				w.Eval(script)
+			})
 		case <-stopClipTrack:
 			return
 		}
