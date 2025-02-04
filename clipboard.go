@@ -10,7 +10,6 @@ import (
 
 func setClipTrack(track bool) {
 	log.Println("Clipboard track status set to", track)
-	clipTrack = track
 	if track {
 		stopClipTrack = make(chan struct{})
 		go clipmain()

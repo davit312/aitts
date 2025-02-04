@@ -14,7 +14,6 @@ var (
 	port          int
 	tmpDir        string
 	model         string
-	clipTrack     bool
 	stopClipTrack chan struct{}
 	port_chan     chan int
 	tmpdir_chan   chan string
@@ -38,7 +37,7 @@ func main() {
 	port = <-port_chan
 	tmpDir = <-tmpdir_chan
 
-	println(port, tmpDir)
+	log.Println("Temporary dir:", tmpDir)
 
 	w = webview.New(false)
 	defer w.Destroy()
@@ -56,7 +55,7 @@ func main() {
 	w.Bind("saveSettings", saveSettings)
 
 	w.Navigate(`http://localhost:` + fmt.Sprintf("%d", port) + `/webui/`)
-	log.Println(`http://localhost:` + fmt.Sprintf("%d", port) + `/webui/`)
+	log.Println(`Server on: http://localhost:` + fmt.Sprintf("%d", port))
 
 	w.Run()
 
