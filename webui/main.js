@@ -43,6 +43,19 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
 btn.onclick = function() {
+
+    fetch('/webui/languages.html')
+        .then(response => response.text())
+        .then(data => {
+            let langDiv = modal.querySelector('#langlist')
+            langDiv.innerHTML = data;
+            
+            let script = document.createElement('script');
+            script.src = '/webui/modalLangs.js';
+            langDiv.appendChild(script);
+        })
+
+
     modal.style.display = "block";
 }
 
