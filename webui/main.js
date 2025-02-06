@@ -114,6 +114,9 @@ function addToQueue(chunk, start=false){
 }
 
 function pause(){
+    if (player.paused){
+        return
+    }
     userPaused = true
     player.pause()
 }

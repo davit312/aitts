@@ -7,6 +7,12 @@ Array.from(document.querySelectorAll('.voice-btn')).forEach(el => {
 
     let modelID = `${code}-${voice}-${quality}`
 
+    if (models.indexOf(modelID) !== -1) {
+        el.innerText = 'Remove'
+    } else {
+        el.innerText = 'Download'
+    }
+
     el.addEventListener('click', e => {
         let links = []
         Array.from(e.target.parentElement.querySelectorAll('span')).forEach(el => {
