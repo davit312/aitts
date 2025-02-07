@@ -65,6 +65,7 @@ function initModelSelector() {
     
     modelSelector.addEventListener('change', (e) => {
         setModel(e.target.value)
+        useCurrentQueue = false
     })
 }
 
