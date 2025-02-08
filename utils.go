@@ -54,6 +54,7 @@ func downloadModelFile(url string) error {
 	// Get the final path for the file
 	finalPath := fileNameFromUrl(url)
 
+	log.Printf("Downloading model file from %s to %s\n", url, finalPath)
 	// Download the file
 	resp, err := http.Get(url)
 	if err != nil {
@@ -95,5 +96,6 @@ func downloadModelFile(url string) error {
 }
 
 func removeModelFile(file string) error {
+	log.Println("Removing model file:", file)
 	return os.Remove(filepath.Join(baseDir(), "models", file))
 }
