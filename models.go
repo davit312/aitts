@@ -49,3 +49,24 @@ func setModel(m string) {
 	log.Println("Model changed to: " + m)
 	model = m + ".onnx"
 }
+
+func onModelAction(action string, data string) error {
+	var err error
+	if action == "download" {
+		err = downloadModelFile(data)
+	} else if action == "remove" {
+		err = removeModelFile(data)
+	}
+
+	if err != nil {
+		w.Dispatch(func() {
+			w.Eval(`modelActionFailure("` + err.Error() + `")`)
+		})
+	} else {
+		w.Dispatch(func() {
+			w.Eval(`modelActionSuccess()`)
+		})
+	}
+
+	return err
+}

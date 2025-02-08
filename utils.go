@@ -93,3 +93,7 @@ func downloadModelFile(url string) error {
 
 	return nil
 }
+
+func removeModelFile(file string) error {
+	return os.Remove(filepath.Join(baseDir(), "models", file))
+}

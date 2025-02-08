@@ -52,6 +52,7 @@ func main() {
 
 	w.Bind("setClipTrack", setClipTrack)
 
+	w.Bind("onModelAction", onModelAction)
 	w.Bind("saveSettings", saveSettings)
 
 	w.Navigate(`http://localhost:` + fmt.Sprintf("%d", port) + `/webui/`)
