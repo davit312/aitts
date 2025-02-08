@@ -130,6 +130,21 @@ body{
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+/**/
+.remove-model{
+    border: 3px solid #f12011;
+}
+
+.progress-modal{
+    z-index: 2;
+}
+.progress-modal .modal-content {
+        background-color: #fffeff;
+        margin-top: 80px; 
+        width: 65%;
+        border: 3px solid #d6f9e9;
+}
+
 /* Prevent body from scrolling when modal is open */
 .no-scroll {
     overflow: hidden !important;
