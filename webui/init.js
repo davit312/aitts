@@ -8,6 +8,11 @@ function initSettings(){
             if(settings.read_clipboard){
                 readonClip.click()
             }
+            if(!models){
+                if(confirm("No models found. Do you want to open setting and download some model?")){
+                    document.getElementById("settings").click()
+                }
+            }
         })
     })
 }
@@ -18,6 +23,7 @@ function initModelSelector() {
  
     const UNKNOWN = "Unknown"
     let hasUnknown = false
+    let model_found = false
 
     Array.from(m).forEach(el => {
 
@@ -41,6 +47,7 @@ function initModelSelector() {
 
         if (el == settings.default_model){
             opt.selected = true
+            model_found = true
             setModel(settings.default_model)
         }
 
@@ -67,6 +74,10 @@ function initModelSelector() {
         setModel(e.target.value)
         useCurrentQueue = false
     })
+
+    if(!model_found && m.length > 0){
+        setModel(modelSelector.value)
+    }
 }
 
 function init() {
