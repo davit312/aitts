@@ -55,10 +55,18 @@ btn.onclick = function() {
             langDiv.appendChild(script);
         })
 
-
     modal.style.display = "block";
-    document.querySelector('#defaultmodel').innerHTML = document.querySelector('#models').innerHTML
-    document.querySelector('#defaultmodel').value = settings.default_model
+
+    let readonstart = document.querySelector('#readonstart')
+    let defmodel = document.querySelector('#defaultmodel')
+    
+    defmodel.innerHTML = document.querySelector('#models').innerHTML
+    defmodel.value = settings.default_model
+
+    readonstart.checked = false
+    if(settings.read_clipboard){
+        readonstart.click()
+    }
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -72,6 +80,14 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+// Save settings
+document.querySelector('#saveDefaultSettings').addEventListener('click', (e) => {
+    settings.default_model = document.querySelector('#defaultmodel').value
+    settings.read_clipboard = document.querySelector('#readonstart').checked
+    saveSettings(JSON.stringify(settings))
+    alert('Settings saved')
+})
 
 function getText(){
     return document.querySelector('#text').value

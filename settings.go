@@ -16,7 +16,7 @@ var settings Settings
 var settingsFile string
 
 func init() {
-	var settingsFile = filepath.Join(baseDir(), "webui", "settings.json")
+	settingsFile = filepath.Join(baseDir(), "webui", "settings.json")
 	var configdata []byte
 
 	// Check if file exists and create it if not
