@@ -39,9 +39,9 @@ function initModelSelector() {
         opt.value = el
         opt.innerHTML = el
 
-        if (el == settings.model){
+        if (el == settings.default_model){
             opt.selected = true
-            setModel(settings.model)
+            setModel(settings.default_model)
         }
 
         optgroups[lang].push(opt)

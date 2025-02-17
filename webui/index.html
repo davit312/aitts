@@ -16,7 +16,7 @@
 					</label>
 				</div>
 				<select id="models"></select>
-				<button id="settings">Settings</button>
+				<button id="settings">⚙ Settings</button>
 			</div>
 			<audio id='speech' hidden></audio>
 			<textarea id='text' style="width: 100%; height: 100%; resize: none; padding: 10px;"></textarea>
@@ -33,6 +33,19 @@
 	        <span class="close">&times;</span>
 	        <div class="modal-body">
 	            <h2>Settings</h2>
+				<div id="settingsForm">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="readonstart">
+						<label class="form-check-label" for="readonstart">
+							Follow clipboard on progran start
+						</label>
+					</div>
+					<div>
+						<span>Default model: </span>
+						<select id="defaultmodel"></select>
+					</div>
+					<button class="btn" style="float:right">Save Settings</button>
+				</div>
 				<div id="langlist"></div>
 	        </div>
 	    </div>

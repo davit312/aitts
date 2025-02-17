@@ -19,9 +19,7 @@ func baseDir() string {
 	return filepath.Dir(exePath)
 }
 
-func saveSettings(settings string) {
 
-}
 
 func fixChunkSplit(text string) string {
 	// Piper binary fails to split armenian text into chunks

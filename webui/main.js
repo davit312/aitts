@@ -57,6 +57,8 @@ btn.onclick = function() {
 
 
     modal.style.display = "block";
+    document.querySelector('#defaultmodel').innerHTML = document.querySelector('#models').innerHTML
+    document.querySelector('#defaultmodel').value = settings.default_model
 }
 
 // When the user clicks on <span> (x), close the modal

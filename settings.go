@@ -8,23 +8,50 @@ import (
 )
 
 type Settings struct {
-	Model         string `json:"model"`
+	DefaultModel  string `json:"default_model"`
 	ReadClipboard bool   `json:"read_clipboard"`
 }
 
 var settings Settings
 
 func init() {
-	configFile, err := os.ReadFile(filepath.Join(baseDir(), "webui", "settings.json"))
+	var settingsFile = filepath.Join(baseDir(), "webui", "settings.json")
+	var configdata []byte
+
+	// Check if file exists and create it if not
+	if _, err := os.Stat(settingsFile); os.IsNotExist(err) {	
+		jbyte, err := json.MarshalIndent(settings, "", "  ")
+		if err != nil {
+			fmt.Println("Error in json marshal", err)
+			return
+		}
+		saveInSettingsFile(jbyte, settingsFile)
+		return
+	}
+
+	var err error
+	configdata, err = os.ReadFile(settingsFile)
 	if err != nil {
 		fmt.Println("Error reading config file:", err)
 		return
 	}
 
 	// Parse the JSON configuration
-	err = json.Unmarshal(configFile, &settings)
+	err = json.Unmarshal(configdata, &settings)
 	if err != nil {
 		fmt.Println("Error parsing config file:", err)
 		return
 	}
+}
+
+func saveInSettingsFile(data []byte, fpath string) {
+	err := os.WriteFile(fpath, data, 0644)
+	if err != nil {	
+		fmt.Println("Error writing config file:", err)
+		return
+	}
+}
+
+func saveSettings(settings string) {
+
 }
