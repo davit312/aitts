@@ -13,6 +13,7 @@ type Settings struct {
 }
 
 var settings Settings
+var settingsFile string
 
 func init() {
 	var settingsFile = filepath.Join(baseDir(), "webui", "settings.json")
@@ -52,6 +53,20 @@ func saveInSettingsFile(data []byte, fpath string) {
 	}
 }
 
-func saveSettings(settings string) {
+func saveSettings(userConf string) {
+	var newSettings Settings
 
+	err := json.Unmarshal([]byte(userConf), &newSettings)
+	if err != nil {	
+		fmt.Println("Error parsing settings:", err)
+		return
+	}
+
+	data, err := json.MarshalIndent(newSettings, "", "  ")
+	if err != nil {
+		fmt.Println("Error in json marshal", err)
+		return
+	}
+
+	saveInSettingsFile(data, settingsFile)
 }
