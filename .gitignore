@@ -3,4 +3,4 @@ aitts.exe
 piper/
 models/*
 !models/*.md
-
+webui/settings.json
