@@ -31,14 +31,22 @@ jobs:
         keys:
           - go-pkg-{{ checksum "go.mod" }}
     - run:
-        command: go build -ldflags '-H=windowsgui'
+        command: go build # -ldflags '-H=windowsgui'
     - save_cache:
         key: go-pkg-{{ checksum "go.mod" }}
         paths:
           - C:\Users\circleci\go
     - run:
+        name: Prepare the package files
+        command: |
+          mkdir aitts
+          mv aitts.exe aitts
+          mv webui aitts
+          mv models aitts
+    - run:
           name: Create a Zip file
           command: |
+            cd aitts
             $ProgressPreference = "SilentlyContinue"
             Compress-Archive .\\ aitts.zip
     - store_artifacts:
