@@ -60,7 +60,23 @@ jobs:
     - store_artifacts:
         path: ./aitts/aitts.zip
 
+  build-linux:
+    executor:
+      name: 
+    environment:
+      PIPER_LINUX_RELEASE: "https://github.com/rhasspy/piper/releases/download/2023.11.14-2/piper_linux_x86_64.tar.gz"
+    steps:
+    - checkout
+    - run:
+        name: install go
+        command: |
+          apt update
+          apt install -y golang-go
+          go version
+
+
 workflows:
   main:
     jobs:
-    - build-windows
+    # - build-windows
+    - build-linux
