@@ -36,8 +36,13 @@ jobs:
         key: go-pkg-{{ checksum "go.mod" }}
         paths:
           - C:\Users\circleci\go
+    - run:
+          name: Create a Zip file
+          command: |
+            $ProgressPreference = "SilentlyContinue"
+            Compress-Archive .\\ aitts.zip
     - store_artifacts:
-        path: ./aitts.exe
+        path: ./aitts.zip
 
 workflows:
   main:
