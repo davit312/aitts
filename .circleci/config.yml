@@ -4,7 +4,7 @@ orbs:
   win: circleci/windows@5.0.0
 
 jobs:
-  build:
+  build-windows:
     executor:
       name: win/default
     environment:
@@ -43,13 +43,13 @@ jobs:
         command: |
           Invoke-WebRequest $env:PIPER_WINDOWS_RELEASE -OutFile piper.zip
           Expand-Archive .\piper.zip -DestinationPath .
-          ls -Recurse
     - run:
         name: Prepare the package files
         command: |
           mkdir aitts
           mv aitts.exe aitts
           mv webui aitts
+          mv piper aitts
           mv models aitts
     - run:
           name: Create a Zip file
@@ -63,4 +63,4 @@ jobs:
 workflows:
   main:
     jobs:
-    - build
+    - build-windows
