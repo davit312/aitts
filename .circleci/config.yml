@@ -33,7 +33,7 @@ jobs:
         keys:
           - go-pkg-{{ checksum "go.mod" }}
     - run:
-        command: go build # -ldflags '-H=windowsgui'
+        command: go build -ldflags '-H=windowsgui'
     - save_cache:
         key: go-pkg-{{ checksum "go.mod" }}
         paths:
