@@ -70,8 +70,8 @@ jobs:
     - run:
         name: install go
         command: |
-          apt update
-          apt install -y golang-go
+          sudo apt update
+          sudo apt install -y golang-go
           go version
 
 
