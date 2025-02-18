@@ -61,8 +61,8 @@ jobs:
         path: ./aitts/aitts.zip
 
   build-linux:
-    executor:
-      name: ubuntu-2204:2024.11.1
+    machine:
+      image: ubuntu-2204:2024.11.1
     environment:
       PIPER_LINUX_RELEASE: "https://github.com/rhasspy/piper/releases/download/2023.11.14-2/piper_linux_x86_64.tar.gz"
     steps:
