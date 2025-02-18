@@ -7,6 +7,8 @@ jobs:
   build:
     executor:
       name: win/default
+    environment:
+      PIPER_WINDOWS_RELEASE: "https://github.com/rhasspy/piper/releases/download/2023.11.14-2/piper_windows_amd64.zip"
     steps:
     - checkout
     - restore_cache:
@@ -36,6 +38,12 @@ jobs:
         key: go-pkg-{{ checksum "go.mod" }}
         paths:
           - C:\Users\circleci\go
+    - run:
+        name: Download Piper
+        command: |
+          Invoke-WebRequest $env:PIPER_WINDOWS_RELEASE -OutFile piper.zip
+          Expand-Archive .\piper.zip -DestinationPath .
+          ls -Recurse
     - run:
         name: Prepare the package files
         command: |
