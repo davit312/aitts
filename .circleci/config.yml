@@ -50,7 +50,7 @@ jobs:
             $ProgressPreference = "SilentlyContinue"
             Compress-Archive .\\ aitts.zip
     - store_artifacts:
-        path: ./aitts.zip
+        path: ./aitts/aitts.zip
 
 workflows:
   main:
