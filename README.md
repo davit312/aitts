@@ -11,5 +11,5 @@ Aitts is locally running text to speech program that use AI speach syntheses. It
 ### Requirements
 
 * requires webview installed on sysytem
-> * most part of desktop linux distros include [webview](https://webkitgtk.org)
+> * most desktop linux distros include [webview](https://webkitgtk.org)
 > * for `windows < 11` install [Microsoft Edge WebView2](https://developer.microsoft.com/en-us/microsoft-edge/webview2/?form=MA13LH)

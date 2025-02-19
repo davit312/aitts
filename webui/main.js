@@ -1,7 +1,12 @@
 const LANGUAGES = {
     "hy_AM": "Armenian",
     "en_US": "English (US)",
-    "ru_RU": "Russian"
+    "en_GB": "English (GB)",
+    "ru_RU": "Russian",
+    "zh_CN": "Chinese",
+    "fr_FR": "French",
+    "de_DE": "German",
+    "es_ES": "Spanish"
 }
 
 let settings = {}
