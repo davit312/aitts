@@ -66,6 +66,11 @@ jobs:
     environment:
       PIPER_LINUX_RELEASE: "https://github.com/rhasspy/piper/releases/download/2023.11.14-2/piper_linux_x86_64.tar.gz"
     steps:
+    - run:
+        command: |
+          sudo apt update
+          sudo apt search webkit2gtk
+          circleci-agent step halt
     - checkout
     - run:
         name: Install go
