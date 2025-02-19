@@ -74,6 +74,10 @@ jobs:
           sudo apt install -y golang-go
           go version
     - run:
+        name: Install webkit2gtk-4
+        command: |
+          sudo apt install -y libwebkit2gtk-4.0-dev
+    - run:
         name: Build binary
         command: |
           go build
