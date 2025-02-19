@@ -59,7 +59,7 @@ jobs:
             Compress-Archive .\\ "aitts-windows-build-$env:CIRCLE_BUILD_NUM.zip"
             mkdir artifacts
             mv "aitts-windows-build-$env:CIRCLE_BUILD_NUM.zip" artifacts
-            mv artetacts/ ../
+            mv artifacts ../
     - store_artifacts:
         path: artifacts
 
@@ -115,4 +115,4 @@ workflows:
   main:
     jobs:
     - build-windows
-    - build-linux
+    #- build-linux
