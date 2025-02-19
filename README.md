@@ -4,7 +4,7 @@ Aitts is locally running text to speech program that use AI speach syntheses. It
 
 ### Features
 
-* Read alud text
+* Read aloud text
 * Read clipboard on change
 * Auto download models
 
