@@ -88,13 +88,27 @@ jobs:
     - run:
         name: Build binary
         command: |
-          go build
+          go build -ldflags '-s -w'
     - run:
         name: Download Piper
         command: |
           wget $PIPER_LINUX_RELEASE -O piper.tar.gz
           tar -xvf piper.tar.gz
-          ls -lh
+    - run:
+      name: Prepare the package files
+      command: |
+        mkdir aitts0
+        mv aitts aitts0
+        mv aitts0 aitts
+        mv webui aitts
+        mv piper aitts
+        mv models aitts
+    - run:
+      name: Create a archive file
+      command: |
+        cd aitts
+        tar -czvf aitts.tar.gz .
+        ls -lh
 
 
 workflows:
