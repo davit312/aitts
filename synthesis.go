@@ -26,8 +26,7 @@ func createAudio(text string) {
 
 		println(runtime.GOOS)
 		if runtime.GOOS == "windows" {
-			print(11)
-			//cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true, CreationFlags: 0x08000000}
+			hideWindow(cmd)
 		}
 
 		stdin, err := cmd.StdinPipe()
