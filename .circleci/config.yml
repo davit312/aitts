@@ -102,11 +102,11 @@ jobs:
     - run:
         name: Create a archive file
         command: |
-          tar -czvf aitts.tar.gz ./aitts
-          ls -lh
+          tar -czvf aitts-${CIRCLE_BUILD_NUM}.tar.gz ./aitts
+          mkdir artifacts
+          mv aitts-${CIRCLE_BUILD_NUM}.tar.gz artifacts/
     - store_artifacts:
-        path: ./aitts.tar.gz
-        destination: aitts-linux-${CIRCLE_BUILD_NUM}.tar.gz
+        path: artifacts/
 
 
 workflows:
