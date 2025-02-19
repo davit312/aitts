@@ -76,7 +76,8 @@ jobs:
     - run:
         name: Install webkit2gtk-4
         command: |
-          sudo apt install -y libwebkit2gtk-4.1-dev
+          sudo apt install --no-restart-on-upgrade -y libwebkit2gtk-4.1-dev
+          sudo systemctl restart xvfb.service 
     - run:
         name: Build binary
         command: |
