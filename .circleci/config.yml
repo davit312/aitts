@@ -101,8 +101,7 @@ jobs:
     - run:
         name: Create a archive file
         command: |
-          cd aitts
-          tar -czvf aitts.tar.gz .
+          tar -czvf aitts.tar.gz ./aitts
           ls -lh
 
 
