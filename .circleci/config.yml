@@ -83,7 +83,7 @@ jobs:
         command: |
           export DEBIAN_FRONTEND=noninteractive
           export NEEDRESTART_MODE=a
-          sudo -E apt install -y libwebkit2gtk-4.1-dev libwebkit2gtk-4.1-0
+          sudo -E apt install -y libwebkit2gtk-4.0-37
           sudo systemctl restart xvfb.service
     - run:
         name: Build binary
