@@ -76,11 +76,16 @@ jobs:
     - run:
         name: Install webkit2gtk-4
         command: |
-          sudo apt install -y libwebkit2gtk-4.0-dev
+          sudo apt install -y libwebkit2gtk-4.1-dev
     - run:
         name: Build binary
         command: |
           go build
+    - run:
+        name: Download Piper
+        command: |
+          wget $PIPER_LINUX_RELEASE -O piper.tar.gz
+          tar -xvf piper.tar.gz
           ls -lh
 
 
