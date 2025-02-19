@@ -68,11 +68,16 @@ jobs:
     steps:
     - checkout
     - run:
-        name: install go
+        name: Install go
         command: |
           sudo apt update
           sudo apt install -y golang-go
           go version
+    - run:
+        name: Build binary
+        command: |
+          go build
+          ls -lh
 
 
 workflows:
