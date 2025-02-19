@@ -59,7 +59,7 @@ jobs:
             Compress-Archive .\\ aitts.zip
     - store_artifacts:
         path: ./aitts/aitts.zip
-        destination: aitts-windows-build${CIRCLE_BUILD_NUM}.zip
+        destination: aitts-windows-${CIRCLE_BUILD_NUM}.zip
 
   build-linux:
     machine:
@@ -106,11 +106,11 @@ jobs:
           ls -lh
     - store_artifacts:
         path: ./aitts.tar.gz
-        destination: aitts-linux-build${CIRCLE_BUILD_NUM}.tar.gz
+        destination: aitts-linux-${CIRCLE_BUILD_NUM}.tar.gz
 
 
 workflows:
   main:
     jobs:
-    - build-windows
+    #- build-windows
     - build-linux
