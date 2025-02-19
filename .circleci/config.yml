@@ -56,9 +56,10 @@ jobs:
           command: |
             cd aitts
             $ProgressPreference = "SilentlyContinue"
-            Compress-Archive .\\aitts-windows-build-$CIRCLE_BUILD_NUM.zip
+            Compress-Archive .\\ "aitts-windows-build-$env:CIRCLE_BUILD_NUM.zip"
             mkdir artifacts
-            mv aitts-windows-build-$CIRCLE_BUILD_NUM.zip artifacts
+            mv "aitts-windows-build-$env:CIRCLE_BUILD_NUM.zip" artifacts
+            mv artetacts/ ../
     - store_artifacts:
         path: artifacts
 
@@ -103,7 +104,7 @@ jobs:
     - run:
         name: Create a archive file
         command: |
-          tar -czvf aitts-${CIRCLE_BUILD_NUM}.tar.gz ./aitts
+          tar -czvf aitts-linux-build-${CIRCLE_BUILD_NUM}.tar.gz ./aitts
           mkdir artifacts
           mv aitts-linux-build-${CIRCLE_BUILD_NUM}.tar.gz artifacts/
     - store_artifacts:
