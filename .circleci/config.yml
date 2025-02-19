@@ -66,11 +66,6 @@ jobs:
     environment:
       PIPER_LINUX_RELEASE: "https://github.com/rhasspy/piper/releases/download/2023.11.14-2/piper_linux_x86_64.tar.gz"
     steps:
-    - run:
-        command: |
-          #sudo apt update
-          #sudo apt search webkit2gtk
-          #circleci-agent step halt
     - checkout
     - run:
         name: Install go
@@ -95,20 +90,20 @@ jobs:
           wget $PIPER_LINUX_RELEASE -O piper.tar.gz
           tar -xvf piper.tar.gz
     - run:
-      name: Prepare the package files
-      command: |
-        mkdir aitts0
-        mv aitts aitts0
-        mv aitts0 aitts
-        mv webui aitts
-        mv piper aitts
-        mv models aitts
+        name: Prepare the package files
+        command: |
+          mkdir aitts0
+          mv aitts aitts0
+          mv aitts0 aitts
+          mv webui aitts
+          mv piper aitts
+          mv models aitts
     - run:
-      name: Create a archive file
-      command: |
-        cd aitts
-        tar -czvf aitts.tar.gz .
-        ls -lh
+        name: Create a archive file
+        command: |
+          cd aitts
+          tar -czvf aitts.tar.gz .
+          ls -lh
 
 
 workflows:
