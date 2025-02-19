@@ -10,7 +10,6 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
-	"syscall"
 )
 
 func createAudio(text string) {
@@ -25,8 +24,10 @@ func createAudio(text string) {
 			"--model", filepath.Join(baseDir(), "models", model),
 			"--output_dir", tmpDir)
 
+		println(runtime.GOOS)
 		if runtime.GOOS == "windows" {
-			cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true, CreationFlags: 0x08000000}
+			print(11)
+			//cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true, CreationFlags: 0x08000000}
 		}
 
 		stdin, err := cmd.StdinPipe()
