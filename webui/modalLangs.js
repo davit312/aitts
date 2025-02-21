@@ -48,7 +48,7 @@ Array.from(document.querySelectorAll('.voice-btn')).forEach(el => {
 
             showProgress()
             countdown = links.length
-            links.forEach(link => onModelAction(action, link))
+            links.forEach(link => setTimeout(() => onModelAction(action, link), 300))
         } else if (action == 'remove') {
             if(!confirm("Do you want to delete model: \n" + modelID)){
                 return
@@ -56,8 +56,8 @@ Array.from(document.querySelectorAll('.voice-btn')).forEach(el => {
 
             showProgress()
             countdown = 2
-            onModelAction(action, modelID+'.onnx')
-            onModelAction(action, modelID+'.onnx.json')
+            setTimeout(() => onModelAction(action, modelID+'.onnx'), 300)
+            setTimeout(() => onModelAction(action, modelID+'.onnx.json'), 300)
         }
     })
 })

@@ -43,7 +43,7 @@ func fileNameFromUrl(url string) string {
 
 func downloadModelFile(url string) error {
 	// Create a temporary file
-	tmpFile, err := os.CreateTemp("", "download-*.tmp")
+	tmpFile, err := os.CreateTemp(filepath.Join(baseDir(), "models"), "download-*.tmp")
 	if err != nil {
 		return fmt.Errorf("failed to create temp file: %w", err)
 	}
