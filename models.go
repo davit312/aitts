@@ -50,23 +50,23 @@ func setModel(m string) {
 	model = m + ".onnx"
 }
 
-func onModelAction(action string, data string) error {
-	var err error
-	if action == "download" {
-		err = downloadModelFile(data)
-	} else if action == "remove" {
-		err = removeModelFile(data)
-	}
+func onModelAction(action string, data string) {
+	go func() {
+		var err error
+		if action == "download" {
+			err = downloadModelFile(data)
+		} else if action == "remove" {
+			err = removeModelFile(data)
+		}
 
-	if err != nil {
-		w.Dispatch(func() {
-			w.Eval(`modelActionFailure("` + err.Error() + `")`)
-		})
-	} else {
-		w.Dispatch(func() {
-			w.Eval(`modelActionSuccess()`)
-		})
-	}
-
-	return err
+		if err != nil {
+			w.Dispatch(func() {
+				w.Eval(`modelActionFailure("` + err.Error() + `")`)
+			})
+		} else {
+			w.Dispatch(func() {
+				w.Eval(`modelActionSuccess()`)
+			})
+		}
+	}()
 }
