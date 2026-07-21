@@ -89,7 +89,8 @@ jobs:
           git clone https://github.com/webview/webview_go.git 
           cd webview_go
           sed -i 's/webkit2gtk-4\.0/webkit2gtk-4.1/g' webview.go
-          go build
+          cat webview.go
+          go install
           cd ..
     - run:
         name: Build binary
