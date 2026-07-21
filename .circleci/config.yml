@@ -88,6 +88,7 @@ jobs:
         command: |
           git clone https://github.com/webview/webview.git ww
           cd ww
+          ls -l
           sed -i 's/webkit2gtk-4\.0/webkit2gtk-4.1/g' webview.go
           go build
     - run:
