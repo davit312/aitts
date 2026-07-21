@@ -120,5 +120,5 @@ jobs:
 workflows:
   main:
     jobs:
-    #- build-windows
+    - build-windows
     - build-linux
