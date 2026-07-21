@@ -65,24 +65,31 @@ jobs:
 
   build-linux:
     machine:
-      image: ubuntu-2204:2024.11.1
+      image: ubuntu-2604:current
     environment:
       PIPER_LINUX_RELEASE: "https://github.com/rhasspy/piper/releases/download/2023.11.14-2/piper_linux_x86_64.tar.gz"
     steps:
     - checkout
     - run:
-        name: Install go
+        name: Install tools
         command: |
           sudo apt update
-          sudo apt install -y golang-go
+          sudo apt install -y golang-go git
           go version
     - run:
         name: Install webkit2gtk-4
         command: |
           export DEBIAN_FRONTEND=noninteractive
           export NEEDRESTART_MODE=a
-          sudo -E apt install -y libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev
+          sudo apt install 'libwebkit2gtk-4.1*' 'libwebkit2gtk-4.1*-dev' -y
           sudo systemctl restart xvfb.service
+    - run:
+        name: Fix webkit2gtk go lib version
+        command: |
+          git clone https://github.com/webview/webview.git ww
+          cd ww
+          sed -i 's/webkit2gtk-4\.0/webkit2gtk-4.1/g' webview.go
+          go build
     - run:
         name: Build binary
         command: |
@@ -114,5 +121,5 @@ jobs:
 workflows:
   main:
     jobs:
-    - build-windows
+    #- build-windows
     - build-linux
