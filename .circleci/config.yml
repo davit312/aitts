@@ -86,12 +86,9 @@ jobs:
     - run:
         name: Fix webkit2gtk go lib version
         command: |
-          git clone https://github.com/webview/webview_go.git 
-          cd webview_go
-          sed -i 's/webkit2gtk-4\.0/webkit2gtk-4.1/g' webview.go
-          cat webview.go
-          go install
-          cd ..
+          git clone https://github.com/webview/webview_go.git ../webview_go
+          sed -i 's/webkit2gtk-4\.0/webkit2gtk-4.1/g' ../webview_go/webview.go
+          echo 'replace github.com/webview/webview_go => ../webview_go' >> go.mod
     - run:
         name: Build binary
         command: |
