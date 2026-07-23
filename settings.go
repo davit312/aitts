@@ -10,6 +10,7 @@ import (
 type Settings struct {
 	DefaultModel  string `json:"default_model"`
 	ReadClipboard bool   `json:"read_clipboard"`
+	Speed int `json:"speed"`
 }
 
 var settings Settings

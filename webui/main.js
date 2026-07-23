@@ -67,7 +67,8 @@ btn.onclick = function() {
     
     defmodel.innerHTML = document.querySelector('#models').innerHTML
     defmodel.value = settings.default_model
-
+    let speedSlider = document.querySelector('#speed')
+    speedSlider.value = settings.speed || 100
     readonstart.checked = false
     if(settings.read_clipboard){
         readonstart.click()
@@ -90,6 +91,7 @@ window.onclick = function(event) {
 document.querySelector('#saveDefaultSettings').addEventListener('click', (e) => {
     settings.default_model = document.querySelector('#defaultmodel').value
     settings.read_clipboard = document.querySelector('#readonstart').checked
+    settings.speed = document.querySelector('#speed').value
     saveSettings(JSON.stringify(settings))
     alert('Settings saved')
 })

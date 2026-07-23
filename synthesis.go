@@ -9,6 +9,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"strconv"
 	"strings"
 )
 
@@ -22,6 +23,7 @@ func createAudio(text string) {
 
 		cmd := exec.Command(filepath.Join(baseDir(), "piper", "piper"),
 			"--model", filepath.Join(baseDir(), "models", model),
+			"--speed", strconv.Itoa(settings.Speed),
 			"--output_dir", tmpDir)
 
 		println(runtime.GOOS)
