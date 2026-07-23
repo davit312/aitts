@@ -179,3 +179,13 @@ body{
     max-height: 400px;
     overflow-y: auto;
 }
+
+input[type="range"] {
+    background: #ccc;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+    background: #ccc;
+}
+input[type="range"]::-moz-range-track {
+    background: #ccc;
+}

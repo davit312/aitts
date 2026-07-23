@@ -10,6 +10,34 @@ import (
 type Settings struct {
 	DefaultModel  string `json:"default_model"`
 	ReadClipboard bool   `json:"read_clipboard"`
+	Speed         string `json:"speed"`
+}
+
+func (s *Settings) UnmarshalJSON(data []byte) error {
+	type Alias Settings
+	aux := &struct {
+		Speed interface{} `json:"speed"`
+		*Alias
+	}{
+		Alias: (*Alias)(s),
+	}
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+	switch v := aux.Speed.(type) {
+	case string:
+		s.Speed = v
+	case float64:
+		s.Speed = fmt.Sprintf("%.2f", v)
+	case int:
+		s.Speed = fmt.Sprintf("%.2f", float64(v))
+	default:
+		s.Speed = "1.00"
+	}
+	if s.Speed == "" {
+		s.Speed = "1.00"
+	}
+	return nil
 }
 
 var settings Settings
@@ -42,6 +70,9 @@ func init() {
 	if err != nil {
 		fmt.Println("Error parsing config file:", err)
 		return
+	}
+	if settings.Speed != "" {
+		speed = settings.Speed
 	}
 }
 

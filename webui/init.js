@@ -5,6 +5,15 @@ function initSettings(){
 
             // Run callbacks after settings loaded
             initModelSelector()
+            let speedSlider = document.querySelector('#speed')
+            if (speedSlider) {
+                speedSlider.value = settings.speed || "1.00"
+            }
+            if (settings.speed) {
+                setSpeed(settings.speed)
+            } else {
+                setSpeed("1.00")
+            }
             if(settings.read_clipboard){
                 readonClip.click()
             }

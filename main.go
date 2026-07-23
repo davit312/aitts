@@ -14,6 +14,7 @@ var (
 	port          int
 	tmpDir        string
 	model         string
+	speed         string = "1.00"
 	stopClipTrack chan struct{}
 	port_chan     chan int
 	tmpdir_chan   chan string
@@ -43,12 +44,13 @@ func main() {
 	defer w.Destroy()
 
 	w.SetTitle("Reader")
-	w.SetSize(800, 600, webview.HintNone)
+	w.SetSize(860, 600, webview.HintNone)
 
 	w.Bind("readText", createAudio)
 
 	w.Bind("getModels", initInstalledModels)
 	w.Bind("setModel", setModel)
+	w.Bind("setSpeed", setSpeed)
 
 	w.Bind("setClipTrack", setClipTrack)
 

@@ -20,9 +20,16 @@ let player = document.querySelector('#speech')
 let textbox = document.querySelector('#text')
 let modelSelector = document.querySelector('#models')
 let readonClip = document.querySelector('#readonclipboard')
+let speedSliderInput = document.querySelector('#speed')
 
 readonClip.addEventListener('change', (e) => {
     setClipTrack(e.target.checked)
+})
+
+speedSliderInput.addEventListener('change', (e) => {
+    let val = parseFloat(e.target.value).toFixed(2)
+    setSpeed(val)
+    useCurrentQueue = false
 })
 
 textbox.addEventListener('change', (e) => {
@@ -67,7 +74,8 @@ btn.onclick = function() {
     
     defmodel.innerHTML = document.querySelector('#models').innerHTML
     defmodel.value = settings.default_model
-
+    let speedSlider = document.querySelector('#speed')
+    speedSlider.value = settings.speed || "1.00"
     readonstart.checked = false
     if(settings.read_clipboard){
         readonstart.click()
@@ -90,6 +98,7 @@ window.onclick = function(event) {
 document.querySelector('#saveDefaultSettings').addEventListener('click', (e) => {
     settings.default_model = document.querySelector('#defaultmodel').value
     settings.read_clipboard = document.querySelector('#readonstart').checked
+    settings.speed = parseFloat(document.querySelector('#speed').value).toFixed(2)
     saveSettings(JSON.stringify(settings))
     alert('Settings saved')
 })
@@ -149,6 +158,15 @@ function stop(){
     nextChunkToPlay = 0
     useCurrentQueue = false
     userPaused = false
+}
+
+function setSpeedValue(val) {
+    let speedSlider = document.querySelector('#speed')
+    if (speedSlider) {
+        speedSlider.value = val
+        setSpeed(parseFloat(val).toFixed(2))
+        useCurrentQueue = false
+    }
 }
 
 /* Start program UI */

@@ -50,6 +50,11 @@ func setModel(m string) {
 	model = m + ".onnx"
 }
 
+func setSpeed(s string) {
+	log.Println("Speed changed to: " + s)
+	speed = s
+}
+
 func onModelAction(action string, data string) {
 	go func() {
 		var err error

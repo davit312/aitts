@@ -16,7 +16,16 @@
 					</label>
 				</div>
 				<select id="models"></select>
-				<button id="settings">⚙ Settings</button>
+				<div style="display: flex; flex-direction: column; align-items: center; margin: 0 4px;">
+					<label for="speed">Speed</label>
+					<input type="range" id="speed" min="0.05" max="1.95" step="0.05" value="1">
+					<div style="display: flex; justify-content: space-between; width: 100%; margin-top: 2px;">
+						<button type="button" class="btn btn-secondary" style="padding: 0px 4px; font-size: 0.75rem; min-width: auto;" onclick="setSpeedValue('0.5')">Fast</button>
+						<button type="button" class="btn btn-secondary" style="padding: 0px 4px; font-size: 0.75rem; min-width: auto;" onclick="setSpeedValue('1.0')">Normal</button>
+						<button type="button" class="btn btn-secondary" style="padding: 0px 4px; font-size: 0.75rem; min-width: auto;" onclick="setSpeedValue('1.5')">Low</button>
+					</div>
+				</div>
+		<button id="settings">⚙ Settings</button>
 			</div>
 			<audio id='speech' hidden></audio>
 			<textarea id='text' style="width: 100%; height: 100%; resize: none; padding: 10px;"></textarea>

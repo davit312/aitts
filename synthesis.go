@@ -19,12 +19,13 @@ func createAudio(text string) {
 
 		log.Println(text)
 		log.Println(model)
+		log.Println(speed)
 
 		cmd := exec.Command(filepath.Join(baseDir(), "piper", "piper"),
 			"--model", filepath.Join(baseDir(), "models", model),
+			"--length_scale", speed,
 			"--output_dir", tmpDir)
 
-		println(runtime.GOOS)
 		if runtime.GOOS == "windows" {
 			hideWindow(cmd)
 		}

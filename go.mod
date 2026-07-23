@@ -13,3 +13,8 @@ require (
 	golang.org/x/mobile v0.0.0-20230301163155-e0f57694e12c // indirect
 	golang.org/x/sys v0.5.0 // indirect
 )
+
+// new linux fix
+// replace github.com/webview/webview_go => ../webview_go
+
+
